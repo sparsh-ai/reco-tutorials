@@ -1,0 +1,26 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2021-05-25T16:17:34Z",
+  "id": "how-to-setup-your-own-codelab-site",
+  "duration": 26,
+  "title": "How to setup your own codelab site (automated)",
+  "authors": "Sparsh A.",
+  "summary": "In this tutorial, we will learn how to setup our own tutorial repositories using codelab and git actions.",
+  "source": "./how-to-setup-your-own-codelab-site.md",
+  "theme": "",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "gitaction",
+    "web"
+  ],
+  "tags": [
+    "medium"
+  ],
+  "feedback": "https://github.com/sparsh-ai/codelabs/issues",
+  "url": "how-to-setup-your-own-codelab-site"
+}
