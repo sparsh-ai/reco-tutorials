@@ -95,9 +95,13 @@ RecoChef provide a guided, tutorial, hands-on learning experience. Most codelabs
 </a>
 </paper-listbox>
 </paper-dropdown-menu>
-</div>
+<paper-dropdown-menu label="Filter by category" class="dropdown-filter" no-label-float noink no-animations>
+<paper-listbox id="categorylist" slot="dropdown-content" class="dropdown-content" on-iron-activate="onCategoryActivate" attr-for-selected="filter">
+<paper-item filter="pytorch">pytorch</paper-item>
+</paper-listbox>
+</paper-dropdown-menu></div>
 <card-sorter id="cards" class="site-width">
-<a href="/reco-tutorials/codelabs/neural-matrix-factorization-from-scratch-in-pytorch/index.html?index=..%2F..index" on-tap="navigate" class="codelab-card category-pytorch" data-category="pytorch" data-title="Neural Matrix Factorization from scratch in PyTorch" data-duration="34" data-updated="2021-06-04T13:39:10Z" data-tags="movielens,scratch" data-pin="">
+<a href="/reco-tutorials/codelabs/neural-matrix-factorization-from-scratch-in-pytorch/index.html?index=..%2F..index" on-tap="navigate" class="codelab-card category-pytorch" data-category="pytorch" data-title="Neural Matrix Factorization from scratch in PyTorch" data-duration="34" data-updated="2021-06-04T14:19:35Z" data-tags="movielens,scratch" data-pin="">
 <div class="description">Neural Matrix Factorization from scratch in PyTorch</div>
 <div class="card-duration">
 <span>34 min </span>
