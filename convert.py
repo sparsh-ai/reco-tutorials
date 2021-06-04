@@ -20,7 +20,7 @@ for path in Path(source_path).rglob('*.png'):
     image_paths.append(path)
     
 def clean_path(x):
-    x = ' '.join(x.split('\\'))
+    x = ' '.join(x.split('/'))
     x = re.sub(r'\S+\d+\S*', ' ', x)
     x = '-'.join(x.lower().split())
     return x
