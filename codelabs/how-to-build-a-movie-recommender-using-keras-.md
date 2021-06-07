@@ -76,7 +76,7 @@ movies = pd.read_csv('https://github.com/sparsh-ai/reco-data/blob/master/MovieLe
 movies.head()
 ```
 
-![img/_markdowns-raw-recostep-how-to-build-a-movie-recommender-using-keras-untitled-1.png](img/_markdowns-raw-recostep-how-to-build-a-movie-recommender-using-keras-untitled-1.png)
+![img/_markdowns-raw-recostep-how-to-build-a-movie-recommender-using-keras-untitled-5.png](img/_markdowns-raw-recostep-how-to-build-a-movie-recommender-using-keras-untitled-5.png)
 
 <!-- ------------------------ -->
 
@@ -105,7 +105,7 @@ In this snippet, we are using pandas `groupby` method to identify and grab the t
 
 This is how the table looks. In this table e.g., user 68 gave a rating of 2.5 to movie 1, and user 288 hasn't yet gave any rating to movie 50. And we are assuming that this user hasn't seen this movie. Our objective is to estimate this rating value.
 
-![img/_markdowns-raw-recostep-how-to-build-a-movie-recommender-using-keras-untitled-1.png](img/_markdowns-raw-recostep-how-to-build-a-movie-recommender-using-keras-untitled-1.png)
+![img/_markdowns-raw-recostep-how-to-build-a-movie-recommender-using-keras-untitled-2.png](img/_markdowns-raw-recostep-how-to-build-a-movie-recommender-using-keras-untitled-2.png)
 
 ### Encoding
 
@@ -186,11 +186,11 @@ This is kind of a neat example of how flexible and powerful modern computation f
 
 The model architecture would look like this:
 
-![img/_markdowns-raw-recostep-how-to-build-a-movie-recommender-using-keras-untitled-1.png](img/_markdowns-raw-recostep-how-to-build-a-movie-recommender-using-keras-untitled-1.png)
+![img/_markdowns-raw-recostep-how-to-build-a-movie-recommender-using-keras-untitled-7.png](img/_markdowns-raw-recostep-how-to-build-a-movie-recommender-using-keras-untitled-7.png)
 
 Let's go ahead and train this for a few epochs and see what we get.
 
-![img/_markdowns-raw-recostep-how-to-build-a-movie-recommender-using-keras-untitled-1.png](img/_markdowns-raw-recostep-how-to-build-a-movie-recommender-using-keras-untitled-1.png)
+![img/_markdowns-raw-recostep-how-to-build-a-movie-recommender-using-keras-untitled-8.png](img/_markdowns-raw-recostep-how-to-build-a-movie-recommender-using-keras-untitled-8.png)
 
 The training loss is low but validation loss is comparatively very high and not decreasing. This clearly indicates that the model is overfitting because it just memorized all the patterns in training set and when we ask to predict unseen ratings, which are in validation set, model didn't performed at all.
 
@@ -245,11 +245,11 @@ def RecommenderV2(n_users, n_movies, n_factors, min_rating, max_rating):
 
 The model summary shows the new graph. Notice the additional embedding layers with parameter numbers equal to the unique user and movie counts.
 
-![img/_markdowns-raw-recostep-how-to-build-a-movie-recommender-using-keras-untitled-1.png](img/_markdowns-raw-recostep-how-to-build-a-movie-recommender-using-keras-untitled-1.png)
+![img/_markdowns-raw-recostep-how-to-build-a-movie-recommender-using-keras-untitled-9.png](img/_markdowns-raw-recostep-how-to-build-a-movie-recommender-using-keras-untitled-9.png)
 
 Let's train this one for a few epochs and see how it performs:
 
-![img/_markdowns-raw-recostep-how-to-build-a-movie-recommender-using-keras-untitled-1.png](img/_markdowns-raw-recostep-how-to-build-a-movie-recommender-using-keras-untitled-1.png)
+![img/_markdowns-raw-recostep-how-to-build-a-movie-recommender-using-keras-untitled-10.png](img/_markdowns-raw-recostep-how-to-build-a-movie-recommender-using-keras-untitled-10.png)
 
 Unlike the previous model, here we can see that both train and validation loss is decreasing and the difference is not huge. Those two additions to the model resulted in a pretty sizable improvement. Validation error is now down to ~0.76 which is about as good as what Jeremy got (and I believe close to SOTA for this data set).
 
@@ -291,11 +291,11 @@ def RecommenderNet(n_users, n_movies, n_factors, min_rating, max_rating):
 
 The architecture would look like this:
 
-![img/_markdowns-raw-recostep-how-to-build-a-movie-recommender-using-keras-untitled-1.png](img/_markdowns-raw-recostep-how-to-build-a-movie-recommender-using-keras-untitled-1.png)
+![img/_markdowns-raw-recostep-how-to-build-a-movie-recommender-using-keras-untitled-3.png](img/_markdowns-raw-recostep-how-to-build-a-movie-recommender-using-keras-untitled-3.png)
 
 Training for a few epochs gives us pretty good results:
 
-![img/_markdowns-raw-recostep-how-to-build-a-movie-recommender-using-keras-untitled-1.png](img/_markdowns-raw-recostep-how-to-build-a-movie-recommender-using-keras-untitled-1.png)
+![img/_markdowns-raw-recostep-how-to-build-a-movie-recommender-using-keras-untitled.png](img/_markdowns-raw-recostep-how-to-build-a-movie-recommender-using-keras-untitled.png)
 
 Without doing any tuning at all we still managed to get a result that's pretty close to the best performance we saw with the traditional approach. This technique has the added benefit that we can easily incorporate additional features into the model. For instance, we could create some date features from the timestamp or throw in the movie genres as a new embedding layer. We could tune the size of the movie and user embeddings independently since they no longer need to match. Lots of possibilities here.
 
@@ -362,11 +362,11 @@ history = model.fit(
 
 Training for a few epochs already gives us impressive results:
 
-![img/_markdowns-raw-recostep-how-to-build-a-movie-recommender-using-keras-untitled-1.png](img/_markdowns-raw-recostep-how-to-build-a-movie-recommender-using-keras-untitled-1.png)
+![img/_markdowns-raw-recostep-how-to-build-a-movie-recommender-using-keras-untitled-6.png](img/_markdowns-raw-recostep-how-to-build-a-movie-recommender-using-keras-untitled-6.png)
 
 The loss curve plot would look like this:
 
-![img/_markdowns-raw-recostep-how-to-build-a-movie-recommender-using-keras-untitled-1.png](img/_markdowns-raw-recostep-how-to-build-a-movie-recommender-using-keras-untitled-1.png)
+![img/_markdowns-raw-recostep-how-to-build-a-movie-recommender-using-keras-untitled-11.png](img/_markdowns-raw-recostep-how-to-build-a-movie-recommender-using-keras-untitled-11.png)
 
 <!-- ------------------------ -->
 
@@ -376,7 +376,7 @@ Duration: 2
 
 In this step, we will build a simple method to recommend top-10 movies for the given user id. We will be using the model version 4 that we trained in last step. To test it out, let's take an example of a random user. First, print out the top movies rated by that user and then print out the top-10 predicted movies for that user. 
 
-![img/_markdowns-raw-recostep-how-to-build-a-movie-recommender-using-keras-untitled-1.png](img/_markdowns-raw-recostep-how-to-build-a-movie-recommender-using-keras-untitled-1.png)
+![img/_markdowns-raw-recostep-how-to-build-a-movie-recommender-using-keras-untitled-4.png](img/_markdowns-raw-recostep-how-to-build-a-movie-recommender-using-keras-untitled-4.png)
 
 <!-- ------------------------ -->
 

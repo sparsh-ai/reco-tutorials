@@ -77,7 +77,7 @@ ratings.head()
 <pre><code language="language-python" class="language-python">movies = pd.read_csv(&#39;https://github.com/sparsh-ai/reco-data/blob/master/MovieLens_LatestSmall_movies.csv?raw=true&#39;)
 movies.head()
 </code></pre>
-<p class="image-container"><img alt="img/_markdowns-raw-recostep-how-to-build-a-movie-recommender-using-keras-untitled-1.png" src="img/97bcdf5154e0f7af.png"></p>
+<p class="image-container"><img alt="img/_markdowns-raw-recostep-how-to-build-a-movie-recommender-using-keras-untitled-5.png" src="img/339910cfb45e21c3.png"></p>
 
 
       </google-codelab-step>
@@ -98,7 +98,7 @@ pd.crosstab(top_r.userId, top_r.movieId, top_r.rating, aggfunc=np.sum)
 </code></pre>
 <p>In this snippet, we are using pandas <code>groupby</code> method to identify and grab the top-15 users and items from the ratings dataframe, and then using <code>crosstab</code> method to create the pivot table.</p>
 <p>This is how the table looks. In this table e.g., user 68 gave a rating of 2.5 to movie 1, and user 288 hasn&#39;t yet gave any rating to movie 50. And we are assuming that this user hasn&#39;t seen this movie. Our objective is to estimate this rating value.</p>
-<p class="image-container"><img alt="img/_markdowns-raw-recostep-how-to-build-a-movie-recommender-using-keras-untitled-1.png" src="img/97bcdf5154e0f7af.png"></p>
+<p class="image-container"><img alt="img/_markdowns-raw-recostep-how-to-build-a-movie-recommender-using-keras-untitled-2.png" src="img/3edb9510c723140e.png"></p>
 <h2 is-upgraded>Encoding</h2>
 <p>To build our first collaborative filtering model, we need to take care of a few things first. The user/movie fields are currently non-sequential integers representing some unique ID for that entity. We need them to be sequential starting at zero to use for modeling (you&#39;ll see why later). We can use scikit-learn&#39;s LabelEncoder class to transform the fields. We&#39;ll also create variables with the total number of unique users and movies in the data, as well as the min and max ratings present in the data, for reasons that will become apparent shortly.</p>
 <pre><code language="language-python" class="language-python">user_enc = LabelEncoder()
@@ -159,9 +159,9 @@ X_test_array = [X_test[:, 0], X_test[:, 1]]
 </code></pre>
 <p>This is kind of a neat example of how flexible and powerful modern computation frameworks like Keras and PyTorch are. Even though these are billed as deep learning libraries, they have the building blocks to quickly create any computation graph you want and get automatic differentiation essentially for free. Below you can see that all of the parameters are in the embedding layers, we don&#39;t have any traditional neural net components at all.</p>
 <p>The model architecture would look like this:</p>
-<p class="image-container"><img alt="img/_markdowns-raw-recostep-how-to-build-a-movie-recommender-using-keras-untitled-1.png" src="img/97bcdf5154e0f7af.png"></p>
+<p class="image-container"><img alt="img/_markdowns-raw-recostep-how-to-build-a-movie-recommender-using-keras-untitled-7.png" src="img/edab88e8bc14273.png"></p>
 <p>Let&#39;s go ahead and train this for a few epochs and see what we get.</p>
-<p class="image-container"><img alt="img/_markdowns-raw-recostep-how-to-build-a-movie-recommender-using-keras-untitled-1.png" src="img/97bcdf5154e0f7af.png"></p>
+<p class="image-container"><img alt="img/_markdowns-raw-recostep-how-to-build-a-movie-recommender-using-keras-untitled-8.png" src="img/73cacd03fc82b3a7.png"></p>
 <p>The training loss is low but validation loss is comparatively very high and not decreasing. This clearly indicates that the model is overfitting because it just memorized all the patterns in training set and when we ask to predict unseen ratings, which are in validation set, model didn&#39;t performed at all.</p>
 
 
@@ -204,9 +204,9 @@ X_test_array = [X_test[:, 0], X_test[:, 1]]
     return model
 </code></pre>
 <p>The model summary shows the new graph. Notice the additional embedding layers with parameter numbers equal to the unique user and movie counts.</p>
-<p class="image-container"><img alt="img/_markdowns-raw-recostep-how-to-build-a-movie-recommender-using-keras-untitled-1.png" src="img/97bcdf5154e0f7af.png"></p>
+<p class="image-container"><img alt="img/_markdowns-raw-recostep-how-to-build-a-movie-recommender-using-keras-untitled-9.png" src="img/342baed47f55a392.png"></p>
 <p>Let&#39;s train this one for a few epochs and see how it performs:</p>
-<p class="image-container"><img alt="img/_markdowns-raw-recostep-how-to-build-a-movie-recommender-using-keras-untitled-1.png" src="img/97bcdf5154e0f7af.png"></p>
+<p class="image-container"><img alt="img/_markdowns-raw-recostep-how-to-build-a-movie-recommender-using-keras-untitled-10.png" src="img/688ebf017f061659.png"></p>
 <p>Unlike the previous model, here we can see that both train and validation loss is decreasing and the difference is not huge. Those two additions to the model resulted in a pretty sizable improvement. Validation error is now down to ~0.76 which is about as good as what Jeremy got (and I believe close to SOTA for this data set).</p>
 <p>That pretty much covers the conventional approach to solving this problem, but there&#39;s another way we can tackle this. Let&#39;s see in next step.</p>
 
@@ -240,9 +240,9 @@ X_test_array = [X_test[:, 0], X_test[:, 1]]
     return model
 </code></pre>
 <p>The architecture would look like this:</p>
-<p class="image-container"><img alt="img/_markdowns-raw-recostep-how-to-build-a-movie-recommender-using-keras-untitled-1.png" src="img/97bcdf5154e0f7af.png"></p>
+<p class="image-container"><img alt="img/_markdowns-raw-recostep-how-to-build-a-movie-recommender-using-keras-untitled-3.png" src="img/27576bbd5f0a9963.png"></p>
 <p>Training for a few epochs gives us pretty good results:</p>
-<p class="image-container"><img alt="img/_markdowns-raw-recostep-how-to-build-a-movie-recommender-using-keras-untitled-1.png" src="img/97bcdf5154e0f7af.png"></p>
+<p class="image-container"><img alt="img/_markdowns-raw-recostep-how-to-build-a-movie-recommender-using-keras-untitled.png" src="img/d01b24f56b06aa7.png"></p>
 <p>Without doing any tuning at all we still managed to get a result that&#39;s pretty close to the best performance we saw with the traditional approach. This technique has the added benefit that we can easily incorporate additional features into the model. For instance, we could create some date features from the timestamp or throw in the movie genres as a new embedding layer. We could tune the size of the movie and user embeddings independently since they no longer need to match. Lots of possibilities here.</p>
 
 
@@ -299,16 +299,16 @@ history = model.fit(
 )
 </code></pre>
 <p>Training for a few epochs already gives us impressive results:</p>
-<p class="image-container"><img alt="img/_markdowns-raw-recostep-how-to-build-a-movie-recommender-using-keras-untitled-1.png" src="img/97bcdf5154e0f7af.png"></p>
+<p class="image-container"><img alt="img/_markdowns-raw-recostep-how-to-build-a-movie-recommender-using-keras-untitled-6.png" src="img/7de77db51fa332b3.png"></p>
 <p>The loss curve plot would look like this:</p>
-<p class="image-container"><img alt="img/_markdowns-raw-recostep-how-to-build-a-movie-recommender-using-keras-untitled-1.png" src="img/97bcdf5154e0f7af.png"></p>
+<p class="image-container"><img alt="img/_markdowns-raw-recostep-how-to-build-a-movie-recommender-using-keras-untitled-11.png" src="img/6b223d164d1dbca9.png"></p>
 
 
       </google-codelab-step>
     
       <google-codelab-step label="Inference" duration="2">
         <p>In this step, we will build a simple method to recommend top-10 movies for the given user id. We will be using the model version 4 that we trained in last step. To test it out, let&#39;s take an example of a random user. First, print out the top movies rated by that user and then print out the top-10 predicted movies for that user.</p>
-<p class="image-container"><img alt="img/_markdowns-raw-recostep-how-to-build-a-movie-recommender-using-keras-untitled-1.png" src="img/97bcdf5154e0f7af.png"></p>
+<p class="image-container"><img alt="img/_markdowns-raw-recostep-how-to-build-a-movie-recommender-using-keras-untitled-4.png" src="img/b0526f647ee14d79.png"></p>
 
 
       </google-codelab-step>
