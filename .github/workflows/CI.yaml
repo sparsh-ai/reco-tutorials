@@ -13,9 +13,5 @@ jobs:
     - name: Copy Repository Contents
       uses: actions/checkout@v2
     - name: Get recostep data
-      env:
-        NOTION_RECOSTEP: ${{ secrets.NOTION_RECOSTEP }}
       run: |
-        echo "$NOTION_RECOSTEP"
-        wget -O ./_markdowns/raw/data.zip "$NOTION_RECOSTEP"
-        ls -l ./_markdowns
+        echo ${{ secrets.NOTION_RECOSTEP }}
