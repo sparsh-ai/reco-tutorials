@@ -4,6 +4,14 @@ import glob
 import shutil
 from pathlib import Path
 from zipfile import ZipFile
+from urllib.parse import quote
+
+def replacer(p, tgt=False):
+  if tgt:
+    _x = "img/"+p.name
+  else:
+    _x = quote(p.parent.name)+"/"+quote(p.name)
+  return _x
 
 source_path = './_markdowns/raw'
 target_path = './_markdowns'
@@ -20,8 +28,7 @@ for path in Path(source_path).rglob('*.png'):
     image_paths.append(path)
     
 def clean_path(x):
-    x = ' '.join(x.split('/'))
-    x = re.sub(r'\S+\d+\S*', ' ', x)
+    x = ' '.join([re.sub(r'\b\w{20,40}\b', ' ', _x) for _x in x.split('/')])
     x = '-'.join(x.lower().split())
     return x
 
@@ -35,30 +42,21 @@ for path in Path(source_path).rglob('*.png'):
 
 for p in renamed_image_paths:
     shutil.move(str(p), os.path.join(target_path,'img'))
-    
-for opath, npath in zip(image_paths, renamed_image_paths):
-    fin = open(str(opath.parent)+'.md', 'rt')
-    data = fin.read()
-    data = re.sub(r'!\[[^\]]*\]\((.*?)\s*("(?:.*[^"])")?\s*\)',
-    f'![img/{npath.name}](img/{npath.name})', data)
-    fin.close()
-    fin = open(str(opath.parent)+'.md', "wt")
-    fin.write(data)
-    fin.close()
-    
-md_paths = []
-for path in Path(source_path).rglob('*.md'):
-    md_paths.append(path)
 
-for p in md_paths:
-    newname = clean_path(p.name)+'.md'
-    os.rename(p, Path(os.path.join(p.parent,newname)))
-    
-for path in Path(source_path).rglob('*.md'):
-    with open(path, 'r') as fin:
-        data = fin.read().splitlines(True)
-    with open(path, 'w') as fout:
-        fout.writelines(data[2:])
-    shutil.move(str(path), target_path)
+sourcestr = [replacer(x) for x in image_paths]
+targetstr = [replacer(x, True) for x in renamed_image_paths]
+
+for p in Path(source_path).rglob('*.md'):
+  with open(p, 'r') as fin:
+    data = fin.read()
+    for check, rep in zip(sourcestr, targetstr):
+      data = data.replace(check, rep)
+    data = data.splitlines(True)
+  with open(p, 'w') as fout:
+    fout.writelines(data[2:])
+  newname = clean_path(p.name)
+  newpath = Path(os.path.join(p.parent,newname))
+  os.rename(p, newpath)
+  shutil.move(str(newpath), target_path)
 
 print('Done!')
