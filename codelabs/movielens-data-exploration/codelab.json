@@ -1,0 +1,26 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2021-06-07T17:39:17Z",
+  "id": "movielens-data-exploration",
+  "duration": 84,
+  "title": "Movielens data exploration",
+  "authors": "Sparsh A.",
+  "summary": "In this tutorial, we will explore movielens dataset",
+  "source": "./recostep-tutorial-notebook-movielens-exploration.md",
+  "theme": "",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "tutorial"
+  ],
+  "tags": [
+    "eda",
+    "movie"
+  ],
+  "feedback": "https://github.com/recohut/reco-step/issues",
+  "url": "movielens-data-exploration"
+}
