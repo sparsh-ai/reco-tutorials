@@ -32,16 +32,13 @@ def clean_path(x):
     x = '-'.join(x.lower().split())
     return x
 
+renamed_image_paths = []
 for p in image_paths:
     newname = clean_path(str(p))
-    os.rename(p, Path(os.path.join(p.parent,newname)))
-
-renamed_image_paths = []
-for path in Path(source_path).rglob('*.png'):
-    renamed_image_paths.append(path)
-
-for p in renamed_image_paths:
-    shutil.move(str(p), os.path.join(target_path,'img'))
+    newpath = Path(os.path.join(p.parent,newname))
+    os.rename(p, newpath)
+    renamed_image_paths.append(newpath)
+    shutil.move(str(newpath), os.path.join(target_path,'img'))   
 
 sourcestr = [replacer(x) for x in image_paths]
 targetstr = [replacer(x, True) for x in renamed_image_paths]
