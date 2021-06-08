@@ -1,8 +1,8 @@
 {
   "name": "Google Codelabs",
   "short_name": "Codelabs",
-  "theme_color": "#455a64",
-  "background_color": "#455a64",
+  "theme_color": "#004D40",
+  "background_color": "#004D40",
   "display": "standalone",
   "icons": [
     {
