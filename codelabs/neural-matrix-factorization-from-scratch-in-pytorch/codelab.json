@@ -3,7 +3,7 @@
   "format": "html",
   "prefix": "https://storage.googleapis.com",
   "mainga": "UA-49880327-14",
-  "updated": "2021-06-08T15:44:31Z",
+  "updated": "2021-06-08T16:11:23Z",
   "id": "neural-matrix-factorization-from-scratch-in-pytorch",
   "duration": 34,
   "title": "Neural Matrix Factorization from scratch in PyTorch",
@@ -15,11 +15,11 @@
     "published"
   ],
   "category": [
-    "pytorch"
+    "tutorial"
   ],
   "tags": [
     "movielens",
-    "scratch"
+    "pytorch"
   ],
   "feedback": "https://form.jotform.com/211377288388469",
   "url": "neural-matrix-factorization-from-scratch-in-pytorch"

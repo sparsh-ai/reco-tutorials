@@ -6,7 +6,7 @@ status: Published
 authors: Sparsh A.
 Feedback Link: https://github.com/recohut/reco-step/issues
 
-# Movielens data exploration
+# Movielens Exploratory Data and Graph Analysis
 
 <!-- ------------------------ -->
 ## Introduction

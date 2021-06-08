@@ -1,7 +1,7 @@
 summary: A tutorial to understand the process of building a Neural Matrix Factorization model from scratch in PyTorch on MovieLens-1M dataset.
 id: neural-matrix-factorization-from-scratch-in-pytorch
-categories: Pytorch
-tags: scratch, movielens
+categories: Tutorial
+tags: movielens, pytorch
 status: Published 
 authors: Sparsh A.
 Feedback Link: https://form.jotform.com/211377288388469
