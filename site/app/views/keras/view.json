@@ -1,6 +1,6 @@
 {
-  "title": "Keras Library",
-  "description": "Using Keras in recommenders",
+  "title": "Keras",
+  "description": "Using Keras library in training recommender systems",
   "logoUrl": "/keras/keras.svg",
   "tags": ["keras"],
   "exclude": [

@@ -58,5 +58,5 @@ $color-tensorflow-orange: #ed8e24;
 }
 
 /* Actual CSS classes */
-@include codelab-card(['tutorial'], $color-blue, 'tutorial.svg');
-@include codelab-card(['story'], $color-red, 'story.svg');
+@include codelab-card(['Tutorial'], $color-blue, 'tutorial.svg');
+@include codelab-card(['Story'], $color-red, 'story.svg');
