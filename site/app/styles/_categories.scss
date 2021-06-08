@@ -21,13 +21,7 @@ $color-red:  #ea4335;
 $color-yellow:  #fbbc05;
 $color-green:  #34a853;
 $color-grey:  #9aa0a6;
-
-/* Other colors */
-
-$color-analytics-orange: #f37c22;
-$color-tensorflow-orange: #ed8e24;
-
-/* Mixins */
+$color-cstm:  #004D40;
 
 @mixin codelab-card($categories, $color, $icon) {
   %bg-#{$color} {
@@ -58,5 +52,5 @@ $color-tensorflow-orange: #ed8e24;
 }
 
 /* Actual CSS classes */
-@include codelab-card(['tutorial'], $color-blue, 'tutorial.svg');
-@include codelab-card(['story'], $color-red, 'story.svg');
+@include codelab-card(['tutorial'], $color-cstm, 'tutorial.svg');
+@include codelab-card(['story'], $color-cstm, 'story.svg');
