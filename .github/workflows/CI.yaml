@@ -54,6 +54,7 @@ jobs:
           cp ../../codelab-elements/extras/codelab-elements.js "$dir"scripts
         done
         grep -rl "<a href=\"'+hc(mc(a))+'\" id=\"arrow-back\">" ./ | xargs -r sed -i "s/<a href=\"'+hc(mc(a))+'\" id=\"arrow-back\">/<a href=\"'+hc(mc(a))+'\/\/\/\/"${{ github.actor }}".github.io\/"${{ github.event.repository.name }}"\/\" id=\"arrow-back\">/g"
+        grep -rl "<a href=\"'+hc(mc(a))+'\" id=\"done\"" ./ | xargs -r sed -i "s/<a href=\"'+hc(mc(a))+'\" id=\"done\"/<a href=\"'+hc(mc(a))+'\/\/\/\/"${{ github.actor }}".github.io\/"${{ github.event.repository.name }}"\/\" id=\"done\"/g"
         grep -rl "https:\/\/storage.googleapis.com\/codelab-elements\/codelab-elements.js" ./ | xargs -r sed -i "s/https:\/\/storage.googleapis.com\/codelab-elements\/codelab-elements.js/scripts\/codelab-elements.js/g"
     - name: Add Image Path Patch
       run: |

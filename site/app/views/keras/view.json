@@ -1,0 +1,10 @@
+{
+  "title": "Keras Library",
+  "description": "Using Keras in recommenders",
+  "logoUrl": "/keras/keras.svg",
+  "tags": ["keras"],
+  "exclude": [
+    ".*-about$",
+    "^lang-.*"
+  ]
+}
